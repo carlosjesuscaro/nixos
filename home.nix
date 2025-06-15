@@ -55,10 +55,25 @@
 
   programs.zsh = {
     enable = true;
-#   ohMyZsh = {
-#     enable = true;
-#      plugins = [ "git" "sudo" "docker" "kubectl" ];
-#   };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" "docker" "kubectl" "fzf" "zoxide" ];
+      theme = "amuse";
+   };
+ 
+    shellAliases = {
+      nixos = "cd /etc/nixos";
+      rb = "sudo nixos-rebuild switch --flake .";
+    };
+
+    initExtra = ''
+      # Check if we are in an interactive shell and TMUX is not set
+      if [[ -z "$TMUX" && -n "$PS1" ]]; then
+        # Attach to existing session, or create a new one
+        tmux attach-session -t default || tmux new-session -s default
+      fi
+    '';   
+  
   };
 
   programs.tmux = {

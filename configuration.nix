@@ -35,6 +35,9 @@
     enable = true;
   };
 
+  # Enabling Zsh
+  programs.zsh.enable = true;  
+
   # --- System Services ---
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
@@ -44,9 +47,10 @@
   users.users.carlos = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
+    shell = pkgs.zsh;
   };
 
-  home-manager.users.carlos = import ./home.nix;
+#  home-manager.users.carlos = import ./home.nix;
 
   system.stateVersion = "25.05";
 }
