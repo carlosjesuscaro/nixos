@@ -14,22 +14,25 @@
   let
    system = "x86_64-linux";
 
-   pkgs = import nixpkgs {
-     inherit system;
-     config = {
-       allowUnfree = true;
-     };
-   };
+#   pkgs = import nixpkgs {
+#     inherit system;
+#     config = {
+#       allowUnfree = true;
+#     };
+#   };
   in
   {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
-   	  inherit inputs pkgs;
+   	  inherit inputs;
           };
       modules = [
         ./configuration.nix
+	({ config, pkgs, ... }: {
+    	  nixpkgs.config.allowUnfree = true;
+	})
         home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

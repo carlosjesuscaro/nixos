@@ -17,21 +17,26 @@
 
   # --- Graphics and Desktop Environment for KDE Plasma ---
   services.xserver.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sddm.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" "intel" ];
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+ #   prime = {
+ #     enable = true;
+ #     sync.enable = true;
+ #     offload.enable = true;
+ #   };
   };
 
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 
