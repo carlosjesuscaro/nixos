@@ -47,6 +47,10 @@
     enable = true;
     userName = "carlos";
     userEmail = "carlos.jesus.caro@gmail.com";
+    extraConfig = {
+      core = { editor = "vim"; };
+      init = { defaultBranch = "master"; };
+    };
   };
 
   programs.zsh = {
