@@ -1,4 +1,4 @@
-# /etc/nixos/home.nix - FINAL SIMPLIFIED VERSION
+# /etc/nixos/home.nix
 { config, pkgs, ... }:
 
 {
@@ -10,9 +10,10 @@
   home.packages = with pkgs; [
     # Utilities
     htop
+    btop
+    glances
     wget
     vim
-    nvtop
     ncdu
     ripgrep
     fd # find replacement
@@ -25,15 +26,21 @@
     zoxide
     nix-tree
     nix-du
+    wireshark
 
     # Development
+    vscode
     jetbrains-toolbox
     terraform
     kubectl
     awscli
     azure-cli
-    gcp-cli
     google-cloud-sdk
+
+    # Others
+    firefox
+    brave
+    google-chrome
   ];
 
   programs.git = {
