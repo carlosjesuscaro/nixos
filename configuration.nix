@@ -2,58 +2,72 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
+  # 1. Core Nix & System Settings
+  # --------------------------------------------------------------------
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "25.05"; # This should match the version you installed with.
+
+  # 2. Bootloader
+  # --------------------------------------------------------------------
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # --- Enable Flakes and the new 'nix' command ---
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  # 3. Localization and Time
+  # --------------------------------------------------------------------
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  nixpkgs.config.allowUnfree = true;
-
+  # 4. Networking
+  # --------------------------------------------------------------------
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
-  # --- Graphics and Desktop Environment for KDE Plasma ---
-  services.xserver.enable = true;
+  # 5. Graphics & Desktop Environment
+  # --------------------------------------------------------------------
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "nvidia" "intel" ];
+  };
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
 
-  services.xserver.videoDrivers = [ "nvidia" "intel" ];
+  hardware.graphics.enable = true;
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
-    open = false;
+    powerManagement.enable = false; # Common for desktops
+    open = false; # Use the proprietary driver
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
   boot.blacklistedKernelModules = [ "nouveau" ];
 
-  hardware.graphics = {
-    enable = true;
-  };
-
-  # Enabling Zsh
-  programs.zsh.enable = true;  
-
-  # --- System Services ---
+  # 6. System Services
+  # --------------------------------------------------------------------
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   virtualisation.docker.enable = true;
 
-  # --- User Configuration ---
+  # 7. System-Wide Programs
+  # --------------------------------------------------------------------
+  programs.zsh.enable = true;
+
+  # 8. Users and Home Manager
+  # --------------------------------------------------------------------
   users.users.carlos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "nordvpn" ];
+    extraGroups = [ "wheel" "docker" ]; # Cleaned up list
     shell = pkgs.zsh;
   };
 
-#  home-manager.users.carlos = import ./home.nix;
-
-  system.stateVersion = "25.05";
+  # This configuration was moved from flake.nix for better organization.
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.carlos = import ./home.nix;
+  };
 }
