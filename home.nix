@@ -19,6 +19,7 @@
   # --------------------------------------------------------------------
   home.packages = with pkgs; [
     # Development
+    python3
     awscli
     azure-cli
     google-cloud-sdk
