@@ -49,7 +49,7 @@
   # --- User Configuration ---
   users.users.carlos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "nordvpn" ];
     shell = pkgs.zsh;
   };
 

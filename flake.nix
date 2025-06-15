@@ -4,10 +4,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -21,8 +23,10 @@
         specialArgs = {
    	  inherit inputs;
           };
+      
       modules = [
         ./configuration.nix
+	
 	({ config, pkgs, ... }: {
     	  nixpkgs.config.allowUnfree = true;
 	})
