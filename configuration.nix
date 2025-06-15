@@ -7,6 +7,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # --- Enable Flakes and the new 'nix' command ---
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   time.timeZone = "America/Toronto";
   i18n.defaultLocale = "en_CA.UTF-8";
 
