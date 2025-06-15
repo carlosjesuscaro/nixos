@@ -55,15 +55,6 @@
 #     enable = true;
 #      plugins = [ "git" "sudo" "docker" "kubectl" ];
 #   };
-#    shellInit = ''
-      # Check if not already in a Tmux session ($TMUX is empty)
-      # and if the shell is interactive ($PS1 is not empty).
-#      if [ -z "$TMUX" ] && [ -n "$PS1" ]; then
-          # Attempt to attach to an existing session named 'default'.
-          # If no such session exists, create a new one named 'default'.
-#          tmux attach-session -t default || tmux new-session -s default
-#      fi
-#    '';
   };
 
   programs.tmux = {

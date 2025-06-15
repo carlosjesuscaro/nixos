@@ -27,11 +27,6 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
- #   prime = {
- #     enable = true;
- #     sync.enable = true;
- #     offload.enable = true;
- #   };
   };
 
   boot.blacklistedKernelModules = [ "nouveau" ];
