@@ -11,16 +11,11 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05"; # This should match the version you installed with.
-  nixpkgs.config.grub.enableOSProber = true;
 
   # 2. Bootloader
   # --------------------------------------------------------------------
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    useOSProber = true;
-    devices = [ "nodev" ];
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   # 3. Localization and Time
   # --------------------------------------------------------------------
