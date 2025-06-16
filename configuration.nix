@@ -68,6 +68,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "hm-bak";
     users.carlos = import ./home.nix;
   };
 }

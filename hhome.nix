@@ -34,7 +34,6 @@
     fd
     fzf
     glances
-    home-manager
     htop
     ncdu
     nix-du
@@ -45,7 +44,6 @@
     vim
     wget
     wireshark
-    xclip
     zip
     zoxide
     
@@ -59,7 +57,10 @@
   # 3. Environment & Application Integration
   # --------------------------------------------------------------------
   
+  # FIX: For HiDPI scaling of JetBrains Toolbox and other apps.
   home.sessionVariables = {
+    # This tells applications to scale their UI by a factor of 2 (200%).
+    # You can adjust this value if needed (e.g., "1.5").
     GDK_SCALE = "2";
   };
 
@@ -70,18 +71,6 @@
       "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
     };
   };
-
-  xdg.desktopEntries."jetbrains-toolbox" = {
-    name = "JetBrains Toolbox";
-    comment = "Manage your JetBrains IDEs";
-    exec = "jetbrains-toolbox %u"; # <--- The critical change to add %u
-    icon = "jetbrains-toolbox";
-    type = "Application";
-    categories = [ "Development" ]; # Good practice to include
-    mimeType = [ "x-scheme-handler/jetbrains" ]; # Declare the mime type
-    # NoDisplay = false; # Uncomment if you want to explicitly show/hide in menus
-  };
-
 
   # --------------------------------------------------------------------
   # 4. Program Configurations
@@ -140,5 +129,4 @@
   # --------------------------------------------------------------------
   # This is required for Home Manager to manage its own configuration file.
   programs.home-manager.enable = true;
-
 }
