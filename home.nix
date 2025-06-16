@@ -60,7 +60,7 @@
   # --------------------------------------------------------------------
   
   home.sessionVariables = {
-    GDK_SCALE = "2";
+    GDK_SCALE = "1";
   };
 
   # FIX: To handle 'jetbrains://' login links correctly.

@@ -16,6 +16,9 @@
   # --------------------------------------------------------------------
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  environment.systemPackages = with pkgs; [
+    os-prober
+  ];
 
   # 3. Localization and Time
   # --------------------------------------------------------------------
