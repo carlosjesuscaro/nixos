@@ -12,6 +12,15 @@
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05"; # This should match the version you installed with.
 
+  # === AUTOMOUNTING YOUR DATA NVME ===
+  fileSystems."/home/carlos/Data" = { 
+    device = "/dev/disk/by-uuid/a0fa3b64-2178-4f28-8047-67a82547680c";
+    fsType = "ext4"; # <--- REPLACE WITH YOUR ACTUAL FILESYSTEM TYPE (e.g., "ntfs", "btrfs", "xfs")
+    options = [ "defaults" "nofail" ]; # 'nofail' prevents boot issues if disk is absent/fails
+  };
+# === END AUTOMOUNTING ===
+
+
   # 2. Bootloader
   # --------------------------------------------------------------------
   boot.loader.systemd-boot.enable = false;
