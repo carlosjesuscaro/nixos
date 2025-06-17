@@ -1,0 +1,23 @@
+building the system configuration...
+warning: Git tree '/etc/nixos' is dirty
+these 9 derivations will be built:
+  /nix/store/78jk8n0v2ggj0pgpy0ibgq5lhhhf7qbp-home-manager-path.drv
+  /nix/store/75jqb2pawcizbh8kkafrqcngwl2wc159-hm_fontconfigconf.d10hmfonts.conf.drv
+  /nix/store/59x7p9cwvqphrbjqw3ra8jfnv7l78sn1-home-manager-files.drv
+  /nix/store/n19vxjsln1b89b1bnsd7bmc8zal6qcvg-user-environment.drv
+  /nix/store/xxwyzm3479d5j0pnn0ilimxijmzabl01-home-manager-generation.drv
+  /nix/store/zw44nc2sizj5jw6ffjnvy4yws2d3vr2f-unit-home-manager-carlos.service.drv
+  /nix/store/szaq4jhg844qgp9706hw6mllmibd9v6w-system-units.drv
+  /nix/store/r9pa18crrwld70r0lk62kd84m83k4wf4-etc.drv
+  /nix/store/8iwjijycr6i83yv7a4lyhjhxihn7cinn-nixos-system-nixos-25.11.20250613.ee930f9.drv
+building '/nix/store/78jk8n0v2ggj0pgpy0ibgq5lhhhf7qbp-home-manager-path.drv'...
+error: builder for '/nix/store/78jk8n0v2ggj0pgpy0ibgq5lhhhf7qbp-home-manager-path.drv' failed with exit code 25;
+       last 1 log lines:
+       > error: collision between `/nix/store/i5323bb72x07y56d8z2iwb589g56k2y8-vim-9.1.1336/share/man/pl.UTF-8/man1/ex.1.gz' and `/nix/store/pgv1v0y1k82kw9q46z4d8gx5bpagdhqv-vim/share/man/pl.UTF-8/man1/ex.1.gz'
+       For full logs, run:
+         nix log /nix/store/78jk8n0v2ggj0pgpy0ibgq5lhhhf7qbp-home-manager-path.drv
+error: 1 dependencies of derivation '/nix/store/xxwyzm3479d5j0pnn0ilimxijmzabl01-home-manager-generation.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/n19vxjsln1b89b1bnsd7bmc8zal6qcvg-user-environment.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/r9pa18crrwld70r0lk62kd84m83k4wf4-etc.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/8iwjijycr6i83yv7a4lyhjhxihn7cinn-nixos-system-nixos-25.11.20250613.ee930f9.drv' failed to build
+Command '['nix', '--extra-experimental-features', 'nix-command flakes', 'build', '--print-out-paths', 'git+file:///etc/nixos#nixosConfigurations."nixos".config.system.build.toplevel', '--no-link']' returned non-zero exit status 1.

@@ -1,0 +1,2 @@
+got build log for '/nix/store/78jk8n0v2ggj0pgpy0ibgq5lhhhf7qbp-home-manager-path.drv' from 'daemon'
+error: collision between `/nix/store/i5323bb72x07y56d8z2iwb589g56k2y8-vim-9.1.1336/share/man/pl.UTF-8/man1/ex.1.gz' and `/nix/store/pgv1v0y1k82kw9q46z4d8gx5bpagdhqv-vim/share/man/pl.UTF-8/man1/ex.1.gz'

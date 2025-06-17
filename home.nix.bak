@@ -4,10 +4,6 @@
 
 { config, pkgs, ... }:
 
-let
-  # Helper variable to make plugin declarations shorter
-  nvimPlugin = pkgs.vimPlugins;
-in
 {
   # --------------------------------------------------------------------
   # 1. Core Home Manager Settings
@@ -27,7 +23,6 @@ in
     google-cloud-sdk
     jetbrains-toolbox
     kubectl
-    gcc
     python3
     terraform
     vscode
@@ -36,7 +31,6 @@ in
     bat
     btop
     curl
-    gnumake
     fd
     fzf
     glances
@@ -48,6 +42,7 @@ in
     ripgrep
     tldr
     unzip
+    vim
     wget
     wireshark
     xclip
@@ -79,12 +74,14 @@ in
   xdg.desktopEntries."jetbrains-toolbox" = {
     name = "JetBrains Toolbox";
     comment = "Manage your JetBrains IDEs";
-    exec = "jetbrains-toolbox %u";
+    exec = "jetbrains-toolbox %u"; # <--- The critical change to add %u
     icon = "jetbrains-toolbox";
     type = "Application";
-    categories = [ "Development" ];
-    mimeType = [ "x-scheme-handler/jetbrains" ];
+    categories = [ "Development" ]; # Good practice to include
+    mimeType = [ "x-scheme-handler/jetbrains" ]; # Declare the mime type
+    # NoDisplay = false; # Uncomment if you want to explicitly show/hide in menus
   };
+
 
   # --------------------------------------------------------------------
   # 4. Program Configurations
@@ -98,71 +95,10 @@ in
     userName = "carlos";
     userEmail = "carlos.jesus.caro@gmail.com";
     extraConfig = {
-      core = { editor = "nvim"; };
+      core = { editor = "vim"; };
       init = { defaultBranch = "master"; };
     };
   };
-
-  # --- VIM (Disabled to avoid conflict with Neovim) ---
-  programs.vim = {
-    enable = false;
-  };
-
-  # === NEOVIM (Nix-Managed ~/.config/nvim) ===
-  programs.neovim = {
-    enable = true;
-    
-    plugins = with nvimPlugin; [
-      plenary-nvim
-  #    nvim-treesitter.withAllGrammars
-      lualine-nvim
-      telescope-nvim                  
-      telescope-fzf-native-nvim
-    ];
-
-    extraLuaConfig = ''
-      -- Core Neovim Settings (moved from 'settings' option)
-      vim.o.number = true                 
-      vim.o.relativenumber = true         
-      vim.o.expandtab = true              
-      vim.o.tabstop = 4                   
-      vim.o.shiftwidth = 4                
-      vim.o.autoindent = true             
-      vim.o.wrap = false                  
-      vim.o.hlsearch = true               
-      vim.o.incsearch = true              
-      vim.o.mouse = "a"                   
-      vim.o.undofile = true               
-      vim.o.updatetime = 300              
-      vim.o.timeoutlen = 500              
-      vim.o.termguicolors = true          
-      vim.opt.cmdheight = 1               
-      vim.opt.showmode = false            
-      vim.opt.clipboard = "unnamedplus"   
-
-      -- Set global leader key to spacebar
-      vim.g.mapleader = " "  
-      
-      -- Basic Keymaps:
-      vim.keymap.set("n", "<Leader>w", ":w<CR>", { desc = "Save current file" })  
-      vim.keymap.set("n", "<Leader>q", ":q<CR>", { desc = "Quit Neovim" })        
-      
-      -- Telescope setup:
-      require('telescope').setup{}
-      vim.keymap.set("n", "<Leader>f", "<cmd>Telescope find_files<CR>", { desc = "Find files with Telescope" })
-
-      -- Lualine setup:
-      require('lualine').setup{}
-
-      -- Treesitter setup:
-      -- require('nvim-treesitter.configs').setup {
-      -- ensure_installed = "all", 
-      -- highlight = { enable = true }, 
-      -- parser_install_dir = vim.fn.stdpath('cache') .. '/nvim/treesitter-parsers',
-      -- }
-    '';
-  };
-  # === END NEOVIM ===
 
   # --- Zsh (Z Shell) ---
   # Manages your ~/.zshrc file.
@@ -175,7 +111,7 @@ in
       plugins = [ "git" "sudo" "docker" "kubectl" "fzf" "zoxide" ];
       theme = "amuse";
     };
-    
+  
     # Custom shell aliases for convenience.
     shellAliases = {
       nixos = "cd /etc/nixos";
