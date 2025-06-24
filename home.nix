@@ -184,7 +184,7 @@ in
 
     # Extra commands to run at the end of .zshrc.
     # This block automatically starts or attaches to a tmux session.
-    initExtra = ''
+    initContent = ''
       # Check if we are in an interactive shell and TMUX is not set
       if [[ -z "$TMUX" && -n "$PS1" ]]; then
         # Attach to existing session, or create a new one
