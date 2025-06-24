@@ -183,7 +183,6 @@ in
     shellAliases = {
       nixos = "cd /etc/nixos";
       rb = "sudo nixos-rebuild switch --flake .";
-      vi = "nvim";
     };
 
     # Extra commands to run at the end of .zshrc.
