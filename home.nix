@@ -48,6 +48,7 @@ in
     ripgrep
     tldr
     unzip
+#    wasistlos
     wget
     wireshark
     xclip
