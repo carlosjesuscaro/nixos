@@ -48,6 +48,7 @@ in
     tldr
     unzip
     vim
+    wasistlos
     wget
     wireshark
     xclip
