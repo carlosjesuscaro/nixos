@@ -4,10 +4,10 @@
 
 { config, pkgs, ... }:
 
-let                                                                                                                                                                                                                                                      
-  # Helper variable to make plugin declarations shorter                                                                                                                                                                                                  
-  nvimPlugin = pkgs.vimPlugins;                                                                                                                                                                                                                          
-in                                                                                                                                                                                                                                                       
+let
+  # Helper variable to make plugin declarations shorter
+  nvimPlugin = pkgs.vimPlugins;
+in
 
 {
   # --------------------------------------------------------------------
@@ -54,7 +54,7 @@ in
     xclip
     zip
     zoxide
-    
+
     # Web Browsers
     brave
     firefox
@@ -64,7 +64,7 @@ in
   # --------------------------------------------------------------------
   # 3. Environment & Application Integration
   # --------------------------------------------------------------------
-  
+
   home.sessionVariables = {
     GDK_SCALE = "2";
   };
@@ -80,7 +80,7 @@ in
   xdg.desktopEntries."jetbrains-toolbox" = {
     name = "JetBrains Toolbox";
     comment = "Manage your JetBrains IDEs";
-    exec = "jetbrains-toolbox %u"; # <--- The critical change to add %u
+    exec = "jetbrains-toolbox %u";
     icon = "jetbrains-toolbox";
     type = "Application";
     categories = [ "Development" ]; # Good practice to include
@@ -101,55 +101,54 @@ in
     userName = "carlos";
     userEmail = "carlos.jesus.caro@gmail.com";
     extraConfig = {
-      core = { editor = "vim"; };
+      core = { editor = "nvim"; };
       init = { defaultBranch = "master"; };
     };
   };
 
-  # --- VIM (Disabled to avoid conflict with Neovim) ---                                                                                                                                                                                                 
-  programs.vim = {                                                                                                                                                                                                                                       
-    enable = false;                                                                                                                                                                                                                                      
-  };                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                         
-  # === NEOVIM (Nix-Managed ~/.config/nvim) ===                                                                                                                                                                                                          
-  programs.neovim = {                                                                                                                                                                                                                                    
-    enable = true;                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                         
-    plugins = with nvimPlugin; [                                                                                                                                                                                                                         
-      plenary-nvim                                                                                                                                                                                                                                       
-  #    nvim-treesitter.withAllGrammars                                                                                                                                                                                                                   
-      lualine-nvim                                                                                                                                                                                                                                       
-      telescope-nvim                                                                                                                                                                                                                                     
-      telescope-fzf-native-nvim                                                                                                                                                                                                                          
-    ];                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                         
-    extraLuaConfig = ''                                                                                                                                                                                                                                  
-      -- Core Neovim Settings (moved from 'settings' option)                                                                                                                                                                                             
-      vim.o.number = true                                                                                                                                                                                                                                
-      vim.o.relativenumber = true                                                                                                                                                                                                                        
-      vim.o.expandtab = true                                                                                                                                                                                                                             
-      vim.o.tabstop = 4                                                                                                                                                                                                                                  
-      vim.o.shiftwidth = 4                                                                                                                                                                                                                               
-      vim.o.autoindent = true                                                                                                                                                                                                                            
-      vim.o.wrap = false                                                                                                                                                                                                                                 
-      vim.o.hlsearch = true                                                                                                                                                                                                                              
-      vim.o.incsearch = true                                                                                                                                                                                                                             
-      vim.o.mouse = "a"                                                                                                                                                                                                                                  
-      vim.o.undofile = true                                                                                                                                                                                                                              
-      vim.o.updatetime = 300                                                                                                                                                                                                                             
-      vim.o.timeoutlen = 500                                                                                                                                                                                                                             
-      vim.o.termguicolors = true          
-      vim.opt.cmdheight = 1               
-      vim.opt.showmode = false            
-      vim.opt.clipboard = "unnamedplus"   
+  # --- VIM (Disabled to avoid conflict with Neovim) ---
+  programs.vim = {
+    enable = false;
+  };
+
+  # === NEOVIM (Nix-Managed ~/.config/nvim) ===
+  programs.neovim = {
+    enable = true;
+
+    plugins = with nvimPlugin; [
+      plenary-nvim
+      lualine-nvim
+      telescope-nvim
+      telescope-fzf-native-nvim
+    ];
+
+    extraLuaConfig = ''
+      -- Core Neovim Settings (moved from 'settings' option)
+      vim.o.number = true
+      vim.o.relativenumber = true
+      vim.o.expandtab = true
+      vim.o.tabstop = 4
+      vim.o.shiftwidth = 4
+      vim.o.autoindent = true
+      vim.o.wrap = false
+      vim.o.hlsearch = true
+      vim.o.incsearch = true
+      vim.o.mouse = "a"
+      vim.o.undofile = true
+      vim.o.updatetime = 300
+      vim.o.timeoutlen = 500
+      vim.o.termguicolors = true
+      vim.opt.cmdheight = 1
+      vim.opt.showmode = false
+      vim.opt.clipboard = "unnamedplus"
 
       -- Set global leader key to spacebar
-      vim.g.mapleader = " "  
-       
+      vim.g.mapleader = " "
+
       -- Basic Keymaps:
-      vim.keymap.set("n", "<Leader>w", ":w<CR>", { desc = "Save current file" })  
-      vim.keymap.set("n", "<Leader>q", ":q<CR>", { desc = "Quit Neovim" })        
-       
+      vim.keymap.set("n", "<Leader>w", ":w<CR>", { desc = "Save current file" })
+      vim.keymap.set("n", "<Leader>q", ":q<CR>", { desc = "Quit Neovim" })
+
       -- Telescope setup:
       require('telescope').setup{}
       vim.keymap.set("n", "<Leader>f", "<cmd>Telescope find_files<CR>", { desc = "Find files with Telescope" })
@@ -157,19 +156,27 @@ in
       -- Lualine setup:
       require('lualine').setup{}
 
-      -- Treesitter setup:
-      -- require('nvim-treesitter.configs').setup {
-      -- ensure_installed = "all", 
-      -- highlight = { enable = true }, 
-      -- parser_install_dir = vim.fn.stdpath('cache') .. '/nvim/treesitter-parsers',
-      -- }
+      -- Configure Neovim to use a blinking vertical bar (pipe) cursor.
+      -- 'ver25' for a vertical bar 25% of character width.
+      -- 'blinkon100' explicitly requests blinking every 100ms.
+      -- This is a more explicit request for the shape and blinking.
+      vim.opt.guicursor = "n:ver25-blinkon100,v:ver25-blinkon100,o:ver25-blinkon100,i:ver25-blinkon100,r:ver25-blinkon100,c:ver25-blinkon100,sm:ver25-blinkon100"
+
+      -- Explicitly restore blinking cursor on Neovim exit.
+      -- This uses the direct Xterm "blinking I-beam" sequence.
+      -- This is crucial for cleanup when Neovim exits.
+      vim.api.nvim_create_autocmd("VimLeave", {
+        pattern = "*",
+        command = "silent !printf '\\\\e[5 q'",
+        desc = "Restore blinking I-beam cursor on Neovim exit",
+      })
     '';
   };
   # === END NEOVIM ===
 
 
   # --- Zsh (Z Shell) ---
-  # Manages your ~/.zshrc file.
+  # Manages your ~/.zshrc file
   programs.zsh = {
     enable = true;
 
@@ -179,16 +186,19 @@ in
       plugins = [ "git" "sudo" "docker" "kubectl" "fzf" "zoxide" ];
       theme = "amuse";
     };
-  
+
     # Custom shell aliases for convenience.
     shellAliases = {
       nixos = "cd /etc/nixos";
       rb = "sudo nixos-rebuild switch --flake .";
+      update = "sudo nix flake update";
+      xclip = "xclip -sel clipboard";
     };
 
     # Extra commands to run at the end of .zshrc.
     # This block automatically starts or attaches to a tmux session.
     initContent = ''
+
       # Check if we are in an interactive shell and TMUX is not set
       if [[ -z "$TMUX" && -n "$PS1" ]]; then
         # Attach to existing session, or create a new one
@@ -201,6 +211,21 @@ in
   # Manages your ~/.tmux.conf file.
   programs.tmux = {
     enable = true;
+    extraConfig = ''
+      set -g default-terminal "konsole-256color"
+
+      # Restore blinking I-beam cursor on Tmux exit/detach.
+      # \e[5 q is the Xterm/VT escape sequence for a blinking I-beam cursor.
+      set-hook -g client-detached 'run "printf \\\\e[5 q"'
+
+      # Tell Tmux's internal terminal definition (tmux-256color and screen-256color)
+      # how to handle cursor shapes and blinking.
+      # 'cnorm' (cursor normal) and 'cvvis' (cursor visible) are set using sequences:
+      # \e[5 q for blinking I-beam. This will try to get the pipe shape.
+      # civis (cursor invisible) is set to \e[?25l.
+      set -ga terminal-overrides ',tmux-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+      set -ga terminal-overrides ',screen-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+    '';
   };
 
   # --------------------------------------------------------------------
