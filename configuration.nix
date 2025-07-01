@@ -68,9 +68,19 @@
   # 6. System Services
   # --------------------------------------------------------------------
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-  systemd.services.blueman-applet.after = [ "bluetooth.service" ];
-  systemd.services.blueman-applet.wantedBy = [ "graphical-session.target" ];
+  # Enabling pipewire
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  security.rtkit.enable = true;
+  # systemd.services.blueman-applet.after = [ "bluetooth.service" ];
+  # systemd.services.blueman-applet.wantedBy = [ "graphical-session.target" ];
+  
   virtualisation.docker.enable = true;
 
   # 7. System-Wide Programs
