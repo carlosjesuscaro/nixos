@@ -69,7 +69,7 @@
   # --------------------------------------------------------------------
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
   # Enabling pipewire
   services.pipewire = {
     enable = true;
