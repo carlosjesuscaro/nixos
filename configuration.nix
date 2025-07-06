@@ -49,7 +49,15 @@
   # 6. System Services
   # --------------------------------------------------------------------
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
+  # Enable pipewire
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  security.rtkit.enable = true;
   virtualisation.docker.enable = true;
 
   # 7. System-Wide Programs
