@@ -36,6 +36,7 @@ in
     bat
     btop
     curl
+    eza
     fd
     fzf
     glances
@@ -46,6 +47,7 @@ in
     nix-tree
     ripgrep
     tldr
+    tree
     unzip
     vim
     wget
@@ -192,6 +194,8 @@ in
       rb = "sudo nixos-rebuild switch --flake .";
       update = "sudo nix flake update";
       xclip = "xclip -sel clipboard";
+      fzfq = "fzf --preview='bat --color=always --line-range :100 --wrap=auto --style=numbers,changes,header,grid {}' --preview-window=right:50%";
+      ezaq = "eza --oneline --all --tree --level=3";
     };
 
     # Extra commands to run at the end of .zshrc.
