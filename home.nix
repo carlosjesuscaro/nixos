@@ -42,6 +42,7 @@ in
     glances
     home-manager
     htop
+    lazygit
     ncdu
     nix-du
     nix-tree
