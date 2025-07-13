@@ -15,7 +15,7 @@ in
   # --------------------------------------------------------------------
   home.username = "carlos";
   home.homeDirectory = "/home/carlos";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.05"; 
 
   # --------------------------------------------------------------------
   # 2. Packages
@@ -42,6 +42,7 @@ in
     glances
     home-manager
     htop
+    lazygit
     ncdu
     nix-du
     nix-tree
@@ -193,10 +194,11 @@ in
     shellAliases = {
       nixos = "cd /etc/nixos";
       rb = "sudo nixos-rebuild switch --flake .";
-      update = "sudo nix flake update";
+      update = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
       xclip = "xclip -sel clipboard";
       fzfq = "fzf --preview='bat --color=always --line-range :100 --wrap=auto --style=numbers,changes,header,grid {}' --preview-window=right:50%";
       ezaq = "eza --oneline --all --tree --level=3";
+      lg = "lazygit";
     };
 
     # Extra commands to run at the end of .zshrc.
