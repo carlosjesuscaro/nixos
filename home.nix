@@ -194,7 +194,7 @@ in
     shellAliases = {
       nixos = "cd /etc/nixos";
       rb = "sudo nixos-rebuild switch --flake .";
-      update = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
+      update = "sudo nix flake update && rm /home/carlos/.config/mimeapps.list.hm-bak && sudo nixos-rebuild switch --flake .";
       xclip = "xclip -sel clipboard";
       fzfq = "fzf --preview='bat --color=always --line-range :100 --wrap=auto --style=numbers,changes,header,grid {}' --preview-window=right:50%";
       ezaq = "eza --oneline --all --tree --level=3";
