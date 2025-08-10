@@ -36,6 +36,7 @@ in
     bat
     btop
     curl
+    exiftool
     eza
     fd
     fzf
