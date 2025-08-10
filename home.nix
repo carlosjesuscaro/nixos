@@ -43,8 +43,10 @@ in
     glances
     home-manager
     htop
+    iproute2 # New version of net-tools
     lazygit
     ncdu
+    net-tools
     nix-du
     nix-tree
     nmap
