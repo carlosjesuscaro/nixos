@@ -39,6 +39,7 @@ in
     exiftool
     eza
     fd
+    filezilla
     fzf
     glances
     home-manager
