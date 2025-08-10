@@ -47,6 +47,7 @@ in
     ncdu
     nix-du
     nix-tree
+    nmap
     ripgrep
     tldr
     tree
