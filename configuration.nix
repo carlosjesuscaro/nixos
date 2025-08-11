@@ -62,13 +62,15 @@
 
   # 7. System-Wide Programs
   # --------------------------------------------------------------------
+  programs.wireshark.enable = true;
   programs.zsh.enable = true;
 
   # 8. Users and Home Manager
   # --------------------------------------------------------------------
+
   users.users.carlos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ]; # Cleaned up list
+    extraGroups = [ "wheel" "docker" "wireshark" ]; # Cleaned up list
     shell = pkgs.zsh;
   };
 
