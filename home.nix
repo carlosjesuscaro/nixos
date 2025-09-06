@@ -24,7 +24,7 @@ in
   home.packages = with pkgs; [
     # Development
     awscli
-    azure-cli
+    # azure-cli
     google-cloud-sdk
     jetbrains-toolbox
     kubectl
@@ -36,14 +36,18 @@ in
     bat
     btop
     curl
+    exiftool
     eza
     fd
+    filezilla
     fzf
     glances
     home-manager
     htop
+    iproute2
     lazygit
     ncdu
+    net-tools
     nix-du
     nix-tree
     ripgrep
