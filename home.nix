@@ -29,6 +29,7 @@ in
     jetbrains-toolbox
     kubectl
     python3
+    R
     terraform
     vscode
 
