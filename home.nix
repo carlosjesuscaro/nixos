@@ -50,6 +50,7 @@ in
     net-tools
     nix-du
     nix-tree
+    nvme-cli
     ripgrep
     tldr
     tree
