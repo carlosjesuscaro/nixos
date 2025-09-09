@@ -7,6 +7,86 @@
 let
   # Helper variable to make plugin declarations shorter
   nvimPlugin = pkgs.vimPlugins;
+
+  myRPackages = with pkgs.rPackages; [
+    # Core Tidyverse (includes ggplot2, dplyr, tidyr, readr, purrr, stringr, forcats)
+    tidyverse
+    
+    # R Markdown for dynamic reports
+    rmarkdown
+    knitr
+    
+    # Development tools
+    devtools
+    usethis
+    
+    # Data manipulation & cleaning
+    janitor
+    lubridate
+    data_table # High-performance alternative to dplyr
+    
+    # Reading/Writing Data
+    readxl       # Excel files
+    writexl      # Excel files
+    haven        # SAS, SPSS, Stata files
+    jsonlite     # JSON data
+    googlesheets4 # Google Sheets
+    
+    # Database connectivity
+    DBI          # Database interface standard
+    RPostgres    # PostgreSQL driver
+    RSQLite      # SQLite driver
+    odbc         # ODBC driver
+    dbplyr       # Translate dplyr to SQL
+    
+    # Data Serialization / Interoperability
+    fst          # Fast data frame serialization
+    feather      # Fast data frame serialization
+    arrow        # Apache Arrow
+    
+    # Spatial Data (if you do GIS)
+    sf           # Simple Features
+    terra        # Raster data
+    
+    # Interactive Visualizations / Dashboards
+    shiny        # Web applications
+    DT           # Interactive HTML tables
+    plotly       # Interactive plots
+    leaflet      # Interactive maps
+    flexdashboard # Dashboards
+    htmlwidgets  # Core for interactive widgets
+    
+    # Plotting enhancements for ggplot2
+    cowplot      # Combining plots
+    patchwork    # Combining plots
+    viridis      # Color palettes
+    paletteer    # More color palettes
+    ggthemes     # Extra ggplot2 themes
+    
+    # Machine Learning / Statistics
+    glmnet       # Lasso/Elastic-Net
+    xgboost      # Gradient Boosting
+    caret        # Unified ML interface
+    tidymodels   # ML framework (includes rsample, parsnip, recipes, workflows, tune, yardstick, broom, dials)
+    
+    # Time Series
+    forecast     # Forecasting models
+    tsibble      # Tidy time series data
+    feasts       # Time series feature extraction
+    fable        # Time series forecasting
+    modeltime    # Tidy forecasting framework
+    
+    # Python Integration (if you use Python with R)
+    reticulate   # Interface to Python
+    
+    # Utility packages
+    here         # Easy path construction
+    fs           # File system operations
+    tinytex      # LaTeX utilities for R Markdown
+    bookdown     # For books with R Markdown
+    blogdown     # For blogs/websites with R Markdown
+    webshot2     # Screenshots of web pages
+  ];
 in
 
 {
@@ -29,7 +109,9 @@ in
     jetbrains-toolbox
     kubectl
     python3
-    R
+    # R
+    rWrapper
+    rPackages.rmarkdown
     terraform
     vscode
 
@@ -68,7 +150,7 @@ in
     brave
     firefox
     google-chrome
-  ];
+  ] ++ myRPackages;
 
   # --------------------------------------------------------------------
   # 3. Environment & Application Integration
