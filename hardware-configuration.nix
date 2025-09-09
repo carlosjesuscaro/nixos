@@ -25,7 +25,7 @@
     };
 
   fileSystems."/home/carlos/Data" =
-    { device = "/dev/disk/by-uuid/094a85e8-aab5-40af-ae2d-51852a12a007";
+    { device = "/dev/disk/by-uuid/99324b27-1678-4198-82c4-f59159a65476";
       fsType = "ext4";
     };
 

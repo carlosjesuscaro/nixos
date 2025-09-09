@@ -14,9 +14,9 @@
 
   # === AUTOMOUNTING YOUR DATA NVME ===
   fileSystems."/home/carlos/Data" = { 
-    device = "/dev/disk/by-uuid/094a85e8-aab5-40af-ae2d-51852a12a007";
+    device = "/dev/disk/by-uuid/99324b27-1678-4198-82c4-f59159a65476";
     fsType = "ext4"; # <--- REPLACE WITH YOUR ACTUAL FILESYSTEM TYPE (e.g., "ntfs", "btrfs", "xfs")
-    options = [ "defaults" "nofail" ]; # 'nofail' prevents boot issues if disk is absent/fails
+    options = [ "defaults" "nofail" "rw" "relatime" ]; # 'nofail' prevents boot issues if disk is absent/fails
   };
 # === END AUTOMOUNTING ===
 
