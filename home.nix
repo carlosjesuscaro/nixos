@@ -108,6 +108,7 @@ in
     google-cloud-sdk
     jetbrains-toolbox
     kubectl
+    pandoc
     python3
     # R
     rWrapper
