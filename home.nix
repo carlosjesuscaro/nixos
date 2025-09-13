@@ -199,13 +199,13 @@ in
 
     # Extra commands to run at the end of .zshrc.
     # This block automatically starts or attaches to a tmux session.
-#    initContent = ''
+    initContent = ''
       # Check if we are in an interactive shell and TMUX is not set
-#      if [[ -z "$TMUX" && -n "$PS1" ]]; then
+      if [[ -z "$TMUX" && -n "$PS1" ]]; then
         # Attach to existing session, or create a new one
-#        tmux attach-session -t default || tmux new-session -s default
-#      fi
-#    '';
+        tmux attach-session -t default || tmux new-session -s default
+      fi
+    '';
   };
 
   # --- Tmux (Terminal Multiplexer) ---
@@ -214,6 +214,7 @@ in
     enable = true;
     extraConfig = ''
       set -g default-terminal "konsole-256color"
+      set -g default-command ${pkgs.zsh}/bin/zsh --login
 
       # Restore blinking I-beam cursor on Tmux exit/detach.
       # \e[5 q is the Xterm/VT escape sequence for a blinking I-beam cursor.
@@ -228,20 +229,6 @@ in
       set -ga terminal-overrides ',screen-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
     '';
   };
-
-  # Manages your Konsole profiles declaratively.
-programs.konsole = {
-  enable = true;
-  profiles = {
-    # This name MUST match your default profile, which is usually "Profile 1".
-    "MachineX" = {
-      isDefault = true;
-      # This command tells Konsole to start tmux.
-      command = "${pkgs.tmux}/bin/tmux new-session -A -s default";
-    };
-  };
-};
-
 
   # --------------------------------------------------------------------
   # 5. Final Home Manager Setting
