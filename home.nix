@@ -199,20 +199,49 @@ in
 
     # Extra commands to run at the end of .zshrc.
     # This block automatically starts or attaches to a tmux session.
-    initContent = ''
+#    initContent = ''
       # Check if we are in an interactive shell and TMUX is not set
-      if [[ -z "$TMUX" && -n "$PS1" ]]; then
+#      if [[ -z "$TMUX" && -n "$PS1" ]]; then
         # Attach to existing session, or create a new one
-        tmux attach-session -t default || tmux new-session -s default
-      fi
-    '';
+#        tmux attach-session -t default || tmux new-session -s default
+#      fi
+#    '';
   };
 
   # --- Tmux (Terminal Multiplexer) ---
   # Manages your ~/.tmux.conf file.
   programs.tmux = {
     enable = true;
+    extraConfig = ''
+      set -g default-terminal "konsole-256color"
+
+      # Restore blinking I-beam cursor on Tmux exit/detach.
+      # \e[5 q is the Xterm/VT escape sequence for a blinking I-beam cursor.
+      set-hook -g client-detached 'run "printf \\\\e[5 q"'
+
+      # Tell Tmux's internal terminal definition (tmux-256color and screen-256color)
+      # how to handle cursor shapes and blinking.
+      # 'cnorm' (cursor normal) and 'cvvis' (cursor visible) are set using sequences:
+      # \e[5 q for blinking I-beam. This will try to get the pipe shape.
+      # civis (cursor invisible) is set to \e[?25l.
+      set -ga terminal-overrides ',tmux-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+      set -ga terminal-overrides ',screen-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+    '';
   };
+
+  # Manages your Konsole profiles declaratively.
+programs.konsole = {
+  enable = true;
+  profiles = {
+    # This name MUST match your default profile, which is usually "Profile 1".
+    "MachineX" = {
+      isDefault = true;
+      # This command tells Konsole to start tmux.
+      command = "${pkgs.tmux}/bin/tmux new-session -A -s default";
+    };
+  };
+};
+
 
   # --------------------------------------------------------------------
   # 5. Final Home Manager Setting
