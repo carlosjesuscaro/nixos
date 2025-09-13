@@ -25,9 +25,10 @@ in
     awscli
     azure-cli
     google-cloud-sdk
+    gcc
     jetbrains-toolbox
     kubectl
-    gcc
+    pandoc
     python3
     terraform
     vscode
@@ -36,19 +37,27 @@ in
     bat
     btop
     curl
-    gnumake
+    exiftool
+    eza
     fd
+    filezilla
     fzf
     glances
     home-manager
     htop
+    iproute2
+    lazygit
     ncdu
+    net-tools
     nix-du
     nix-tree
+    nvme-cli
     ripgrep
     tldr
+    tree
     unzip
-#    wasistlos
+    vim
+    wasistlos
     wget
     wireshark
     xclip
@@ -181,6 +190,11 @@ in
     shellAliases = {
       nixos = "cd /etc/nixos";
       rb = "sudo nixos-rebuild switch --flake .";
+      update = "sudo nix flake update && sudo nixos-rebuild switch --flake .";
+      xclip = "xclip -sel clipboard";
+      fzfq = "fzf --preview='bat --color=always --line-range :100 --wrap=auto --style=numbers,changes,header,grid {}' --preview-window=right:50%";
+      ezaq = "eza --oneline --all --tree --level=3";
+      lg = "lazygit";
     };
 
     # Extra commands to run at the end of .zshrc.

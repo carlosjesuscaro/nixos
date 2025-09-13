@@ -25,6 +25,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/home/carlos/Data" =
+  { device = "/dev/disk/by-uuid/99324b27-1678-4198-82c4-f59159a65476";
+    fsType = "ext4";
+  };
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
