@@ -214,7 +214,7 @@ in
     enable = true;
     extraConfig = ''
       set -g default-terminal "konsole-256color"
-      set -g default-command ${pkgs.zsh}/bin/zsh --login
+      set -g default-command "${pkgs.zsh}/bin/zsh --login"
 
       # Restore blinking I-beam cursor on Tmux exit/detach.
       # \e[5 q is the Xterm/VT escape sequence for a blinking I-beam cursor.
@@ -225,8 +225,8 @@ in
       # 'cnorm' (cursor normal) and 'cvvis' (cursor visible) are set using sequences:
       # \e[5 q for blinking I-beam. This will try to get the pipe shape.
       # civis (cursor invisible) is set to \e[?25l.
-      set -ga terminal-overrides ',tmux-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
-      set -ga terminal-overrides ',screen-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+      # set -ga terminal-overrides ',tmux-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
+      # set -ga terminal-overrides ',screen-256color:cnorm=\\E[5 q:civis=\\E[?25l:cvvis=\\E[5 q'
     '';
   };
 
