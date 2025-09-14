@@ -186,6 +186,9 @@ in
     ];
 
     extraLuaConfig = ''
+      -- Stop Neovim from changing the cursor shape
+      # vim.o.guicursor = "a:blinkon0"      
+
       -- Core Neovim Settings (moved from 'settings' option)
       vim.o.number = true                 
       vim.o.relativenumber = true         
