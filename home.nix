@@ -269,7 +269,7 @@ in
     enable = true;
     extraConfig = ''
       set -g default-terminal "konsole-256color"
-      set -g default-command "${pkgs.zsh}/bin/zsh --login"
+      set -g default-command "${pkgs.zsh}/bin/zsh"
 
       # Restore blinking I-beam cursor on Tmux exit/detach.
       # \e[5 q is the Xterm/VT escape sequence for a blinking I-beam cursor.
