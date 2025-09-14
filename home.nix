@@ -7,6 +7,60 @@
 let
   # Helper variable to make plugin declarations shorter
   nvimPlugin = pkgs.vimPlugins;
+
+  r-with-packages = (pkgs.rstudioWrapper.override {
+    packages = with pkgs.rPackages; [
+      # Core Tidyverse for data manipulation and visualization
+      tidyverse  # Meta-package including ggplot2, dplyr, tidyr, readr, etc.
+
+      # High-performance data manipulation
+      data_table
+      arrow # Interface to Apache Arrow
+
+      # Time Series, Finance, and Date/Time handling
+      lubridate
+      xts
+      zoo
+      quantmod
+
+      # Machine Learning and Modeling
+      caret       # Classification and regression training (classic)
+      tidymodels  # A modern collection of modeling packages
+      randomForest
+      xgboost
+      glmnet
+      lme4      # Linear Mixed-Effects Models
+
+      # Interactive Visualization and Dashboards
+      plotly
+      shiny
+      leaflet     # Interactive maps
+
+      # ggplot2 Extensions
+      gganimate
+      ggthemes
+      patchwork
+
+      # Reporting, Web Scraping, and APIs
+      rmarkdown
+      rsconnect
+      packrat
+      knitr
+      quarto    # Next-generation R Markdown
+      rvest     # Web scraping
+      httr      # HTTP requests for APIs
+
+      # Spatial Analysis
+      sf        # Simple Features for R
+      terra     # Modern spatial data analysis
+
+      # Development and Package Management
+      devtools
+      roxygen2
+      here      # Simpler file paths
+    ];
+  });
+
 in
 {
   # --------------------------------------------------------------------
@@ -30,6 +84,7 @@ in
     kubectl
     pandoc
     python3
+    r-with-packages
     terraform
     vscode
 
