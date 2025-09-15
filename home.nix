@@ -58,6 +58,10 @@ let
       devtools
       roxygen2
       here      # Simpler file paths
+
+      # Others
+      wordcloud	# Word cloud
+      RColorBrewer 
     ];
   });
 
