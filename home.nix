@@ -8,7 +8,7 @@ let
   # Helper variable to make plugin declarations shorter
   nvimPlugin = pkgs.vimPlugins;
 
-  r-with-packages = (pkgs.rstudioWrapper.override {
+  myR = pkgs.rWrapper.override {
     packages = with pkgs.rPackages; [
       # Core Tidyverse for data manipulation and visualization
       tidyverse  # Meta-package including ggplot2, dplyr, tidyr, readr, etc.
@@ -63,8 +63,8 @@ let
       wordcloud
       RColorBrewer
     ];
-  });
-
+  };
+  r-with-packages = pkgs.rstudioWrapper.override { R = myR; };
 in
 
 {
