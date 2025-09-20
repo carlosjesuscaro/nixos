@@ -49,7 +49,7 @@
   # 6. System Services
   # --------------------------------------------------------------------
   hardware.bluetooth.enable = true;
-  # services.blueman.enable = true;
+  services.blueman.enable = true;
   # Enable pipewire
   services.pipewire = {
     enable = true;
