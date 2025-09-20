@@ -83,7 +83,7 @@ in
   home.packages = with pkgs; [
     # Development
     awscli
-    # azure-cli
+    azure-cli
     google-cloud-sdk
     jetbrains-toolbox
     kubectl
