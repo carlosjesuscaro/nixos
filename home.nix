@@ -12,7 +12,8 @@ let
     packages = with pkgs.rPackages; [
       # Core Tidyverse for data manipulation and visualization
       tidyverse  # Meta-package including ggplot2, dplyr, tidyr, readr, etc.
-
+      stringr
+      
       # High-performance data manipulation
       data_table
       arrow # Interface to Apache Arrow
@@ -114,6 +115,7 @@ in
     ripgrep
     tldr
     tree
+    usbutils
     unzip
     vim
     wasistlos
