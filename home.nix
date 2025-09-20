@@ -46,6 +46,7 @@ let
       knitr
       rsconnect
       packrat
+      pandoc
       quarto    # Next-generation R Markdown
       rvest     # Web scraping
       httr      # HTTP requests for APIs
