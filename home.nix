@@ -115,6 +115,7 @@ in
     tldr
     tree
     unzip
+    usbutils
     vim
     wasistlos
     wget
