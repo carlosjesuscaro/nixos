@@ -30,6 +30,7 @@
     device = "nodev";
     useOSProber = true;
     efiSupport = true;
+    timeout = 30;
   };
 
   environment.systemPackages = with pkgs; [
