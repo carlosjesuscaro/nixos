@@ -300,6 +300,24 @@ in
     '';
   };
 
+  # --- SSH Client ---
+  # Manages your ~/.ssh/config file.
+  programs.ssh = {
+    enable = true;
+    # This section creates rules for your SSH client
+    matchBlocks = {
+      # Rule specifically for github.com
+      "github.com" = {
+        hostname = "github.com";
+        user = "git";
+        # IMPORTANT: Tell SSH to use the specific key you created in Step 1
+        identityFile = "~/.ssh/github_key";
+        # Good practice: Prevents SSH from trying other random keys
+        identitiesOnly = true;
+      };
+    };
+  };
+
   # --------------------------------------------------------------------
   # 5. Final Home Manager Setting
   # --------------------------------------------------------------------
