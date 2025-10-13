@@ -59,18 +59,23 @@
   };
   security.rtkit.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # 7. System-Wide Programs
   # --------------------------------------------------------------------
   programs.wireshark.enable = true;
   programs.zsh.enable = true;
 
+  environment.systemPackages = with pkgs; [
+    minikube
+  ];
+
   # 8. Users and Home Manager
   # --------------------------------------------------------------------
 
   users.users.carlos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "wireshark" ]; # Cleaned up list
+    extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" ];
     shell = pkgs.zsh;
   };
 
