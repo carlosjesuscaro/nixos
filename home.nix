@@ -265,6 +265,7 @@ in
       fzfq = "fzf --preview='bat --color=always --line-range :100 --wrap=auto --style=numbers,changes,header,grid {}' --preview-window=right:50%";
       ezaq = "eza --oneline --all --tree --level=3";
       lg = "lazygit";
+      k8s = "kubectl";
     };
 
     # Extra commands to run at the end of .zshrc.
