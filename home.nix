@@ -87,6 +87,7 @@ in
     google-cloud-sdk
     jetbrains-toolbox
     kubectl
+    postman
     python3
     r-with-packages
     terraform
