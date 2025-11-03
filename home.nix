@@ -82,6 +82,7 @@ in
   # --------------------------------------------------------------------
   home.packages = with pkgs; [
     # Development
+    ansible
     awscli
     azure-cli
     google-cloud-sdk
@@ -91,6 +92,7 @@ in
     python3
     r-with-packages
     terraform
+    vagrant
     vscode
 
     # Shell & Utilities
@@ -136,7 +138,7 @@ in
   # --------------------------------------------------------------------
 
   home.sessionVariables = {
-    GDK_SCALE = "1";
+    GDK_SCALE = "2";
   };
 
   # FIX: To handle 'jetbrains://' login links correctly.
