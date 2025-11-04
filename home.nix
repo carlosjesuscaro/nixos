@@ -93,6 +93,7 @@ in
     r-with-packages
     terraform
     vagrant
+    virtualbox
     vscode
 
     # Shell & Utilities

@@ -59,6 +59,7 @@
   };
   security.rtkit.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
   virtualisation.libvirtd.enable = true;
 
   # 7. System-Wide Programs
@@ -75,7 +76,7 @@
 
   users.users.carlos = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" ];
+    extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "vboxusers" ];
     shell = pkgs.zsh;
   };
 
