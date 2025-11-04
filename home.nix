@@ -119,6 +119,7 @@ in
     tldr
     tree
     unzip
+    usbimager
     usbutils
     vim
     wasistlos

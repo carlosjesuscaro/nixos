@@ -58,9 +58,25 @@
     pulse.enable = true;
   };
   security.rtkit.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.libvirtd.enable = true;
+  # virtualisation.docker.enable = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.libvirtd.enable = true;
+
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+
+    # VirtualBox host support
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;  # Optional but often useful
+    };
+  };
+
+  services.udev.extraRules = ''
+  KERNEL=="vboxdrv", GROUP="vboxusers", MODE="0660"
+  '';
+
 
   # 7. System-Wide Programs
   # --------------------------------------------------------------------
@@ -73,7 +89,8 @@
 
   # 8. Users and Home Manager
   # --------------------------------------------------------------------
-
+  users.groups.vboxusers = {};
+  
   users.users.carlos = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" "wireshark" "libvirtd" "vboxusers" ];
