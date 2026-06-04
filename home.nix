@@ -118,7 +118,7 @@ in
     usbutils
     unzip
     vim
-    wasistlos
+    # wasistlos
     wget
     wireshark
     xclip
@@ -166,11 +166,14 @@ in
   # Manages your ~/.gitconfig file.
   programs.git = {
     enable = true;
-    userName = "carlos";
-    userEmail = "carlos.jesus.caro@gmail.com";
-    extraConfig = {
-      core = { editor = "nvim"; };
-      init = { defaultBranch = "master"; };
+
+    settings = {
+      user.name = "carlos";
+      user.email = "carlos.jesus.caro@gmail.com";
+      extraConfig = {
+        core = { editor = "nvim"; };
+        init = { defaultBranch = "master"; };
+      };
     };
   };
 
@@ -182,6 +185,8 @@ in
   # === NEOVIM (Nix-Managed ~/.config/nvim) ===
   programs.neovim = {
     enable = true;
+    withRuby = false;
+    withPython3 = false;
     
     plugins = with nvimPlugin; [
       plenary-nvim
@@ -191,7 +196,7 @@ in
       telescope-fzf-native-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- Stop Neovim from changing the cursor shape
       # vim.o.guicursor = "a:blinkon0"      
 
