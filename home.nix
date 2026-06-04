@@ -144,6 +144,13 @@ in
     enable = true;
     defaultApplications = {
       "x-scheme-handler/jetbrains" = [ "jetbrains-toolbox.desktop" ];
+    
+    # --- Set Google Chrome as Default ---
+      "text/html" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
     };
   };
 
@@ -198,7 +205,7 @@ in
 
     initLua = ''
       -- Stop Neovim from changing the cursor shape
-      # vim.o.guicursor = "a:blinkon0"      
+      --  vim.o.guicursor = "a:blinkon0"      
 
       -- Core Neovim Settings (moved from 'settings' option)
       vim.o.number = true                 
